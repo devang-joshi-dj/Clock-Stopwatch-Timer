@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Clock-Stopwatch-Timer</title>
+	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<header>
+		<a id="clockHeading" class="active">Clock</a>
+		<a id="stopwatchHeading" class="">Stopwatch</a>
+		<a id="timerHeading" class="">Timer</a>
+	</header>
+
+	<div class="main">
+
+		<div class="formatMode">
+			<input type="checkbox" id="formatMode">
+			<label for="formatMode">- 12/24 Hour Time Format</label>
+		</div>
+		<div id="clock">
+			<div id="meridiem"></div>
+			<div class="clockTime">
+				<div id="clockHour"></div>
+				<div class="colon">:</div>
+				<div id="clockMinute"></div>
+				<div class="colon">:</div>
+				<div id="clockSecond"></div>
+			</div>
+			<div id="timeLabel">TIME</div>
+			<hr class="first">
+			<div class="clockDate">
+				<div id="clockDateLabel">DATE</div>
+				<div id="clockDate"></div>
+			</div>
+			<div class="slash">/</div>
+			<div class="clockMonth">
+				<div id="clockMonthLabel">MONTH</div>
+				<div id="clockMonth"></div>
+			</div>
+			<div class="pipe">|</div>
+			<div class="clockDay">
+				<div id="clockDayLabel">DAY</div>
+				<div id="clockDayName"></div>
+			</div>
+			<hr class="second">
+			<div class="clockYear">
+				<div id="clockYearLabel">YEAR</div>
+				<div id="clockYear"></div>
+			</div>
+		</div>
+
+		<div id="stopwatch">
+			<div class="stopwatchTime">
+				<div id="stopwatchHour">0</div>
+				<div class="colon">:</div>
+				<div id="stopwatchMinute">0</div>
+				<div class="colon">:</div>
+				<div id="stopwatchSecond">0</div>
+				<div id="stopwatchMillisecond">0</div>
+			</div>
+			<hr class="third">
+			<div id="lap"></div>
+			<div class="stopwatchButton">
+				<button id="stopwatchReset" type="button">RESET</button>
+				<button id="stopwatchStartStop" type="button">START</button>
+				<button id="countLap" type="button">LAP</button>
+			</div>
+		</div>
+
+		<div id="timer"></div>
+	</div>
+</body>
+</html>
