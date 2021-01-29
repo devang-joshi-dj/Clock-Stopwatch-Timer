@@ -9,15 +9,15 @@
 </head>
 <body>
 	<header>
-		<a id="clockHeading" class="active">Clock</a>
-		<a id="stopwatchHeading" class="">Stopwatch</a>
-		<a id="timerHeading" class="">Timer</a>
+		<a id="clockHeading">Clock</a>
+		<a id="stopwatchHeading">Stopwatch</a>
+		<a id="timerHeading">Timer</a>
 	</header>
 
 	<div class="main">
 
 		<div class="formatMode">
-			<input type="checkbox" id="formatMode">
+			<input type="checkbox" id="formatMode" />
 			<label for="formatMode">- 12/24 Hour Time Format</label>
 		</div>
 		<div id="clock">
@@ -66,11 +66,22 @@
 			<div class="stopwatchButton">
 				<button id="stopwatchReset" type="button">RESET</button>
 				<button id="stopwatchStartStop" type="button">START</button>
-				<button id="countLap" type="button">LAP</button>
+				<button id="stopwatchCountLap" type="button">LAP</button>
 			</div>
 		</div>
 
-		<div id="timer"></div>
+		<div id="timer">
+			<div class="timerTime">
+				<input type="number" id="timerHour" value={val} onchange=timerHourChange() maxLength="2" placeholder="HH" />
+				<input type="number" id="timerMinute" placeholder="MM" />
+				<input type="number" id="timerSecond" placeholder="SS" />
+			</div>
+			<div class="timerButton">
+				<button id="timerReset" type="button">RESET</button>
+				<button id="timerStartStop" type="button">START</button>
+				<button id="timerDelete" type="button">DELETE</button>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
