@@ -1,3 +1,7 @@
+<!--
+	Project Name - Clock-Stopwatch-Timer
+	Author - Devang Joshi
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +12,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Clock-Stopwatch-Timer</title>
 	<link rel="stylesheet" href="style.css" />
-	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 	<header>
@@ -16,15 +19,16 @@
 		<a id="stopwatchHeading">Stopwatch</a>
 		<a id="timerHeading">Timer</a>
 	</header>
-
+	
 	<div class="main">
-
 		<div class="formatMode">
 			<input type="checkbox" id="formatMode" />
 			<label for="formatMode">- 12/24 Hour Time Format</label>
 		</div>
+
 		<div id="clock">
 			<div id="meridiem"></div>
+
 			<div class="clockTime">
 				<div id="clockHour"></div>
 				<div class="colon">:</div>
@@ -54,7 +58,7 @@
 				<div id="clockYear"></div>
 			</div>
 		</div>
-
+		
 		<div id="stopwatch">
 			<div class="stopwatchTime">
 				<div id="stopwatchHour">0</div>
@@ -64,21 +68,56 @@
 				<div id="stopwatchSecond">0</div>
 				<div id="stopwatchMillisecond">0</div>
 			</div>
+			
 			<hr class="third">
+
 			<div id="lap"></div>
+			
 			<div class="stopwatchButton">
 				<button id="stopwatchReset" type="button">RESET</button>
 				<button id="stopwatchStartStop" type="button">START</button>
 				<button id="stopwatchCountLap" type="button">LAP</button>
 			</div>
 		</div>
-
+		
 		<div id="timer">
 			<div class="timerTime">
-				<input type="number" id="timerHour" value="" placeholder="HH" />
-				<input type="number" id="timerMinute" value="" placeholder="MM" />
-				<input type="number" id="timerSecond" value="" placeholder="SS" />
+				<input
+				type="number"
+				id="timerHour"
+				value=""
+				step="1"
+				onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				title="Numbers only"
+				min="0"
+				max="99"
+				maxlength="2"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+				placeholder="HH" />
+				
+				<input
+				type="number"
+				id="timerMinute"
+				value=""
+				step="1"
+				onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				title="Numbers only"
+				min="0"
+				max="60"
+				maxlength="2"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+				placeholder="MM" />
+				
+				<input
+				type="number" id="timerSecond" value="" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				title="Numbers only"
+				min="0"
+				max= "60"
+				maxlength="2"
+				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+				placeholder="SS" />
 			</div>
+
 			<div class="timerButton">
 				<button id="timerReset" type="button">RESET</button>
 				<button id="timerStartStop" type="button">START</button>
@@ -86,5 +125,8 @@
 			</div>
 		</div>
 	</div>
+
+	<script src="./script.js"></script>
+
 </body>
 </html>

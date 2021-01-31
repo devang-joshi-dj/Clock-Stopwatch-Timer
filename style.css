@@ -8,7 +8,7 @@
 }
 
 html {
-  background-image: linear-gradient(to right, rgba(255, 90, 90, 0.5), rgba(157, 255, 255, 0.5));
+  background-image: linear-gradient(to right, rgb(222, 145, 145), rgb(190, 200, 200));
   margin: 0;
   height: 100vh;
   user-select: none;
@@ -32,10 +32,11 @@ header a {
   width: 130px;
   color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   text-align: center;
   padding: 15px;
-  margin: 0 10px;
+  margin: 10px 10px;
   text-decoration: none;
   border-radius: 10px;
   cursor: pointer;
@@ -128,7 +129,7 @@ input:checked[type="checkbox"]::before {
 #clock {
   width: 500px;
   height: 391.2px;
-  text-shadow: 0px 0px 2px black, 0 0 3px rgb(157, 255, 255), 0 0 2px rgb(96, 226, 226);
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.7), 0 0 10px rgba(157, 255, 255, 0.3), 0 0 5px rgba(96, 226, 226, 0.6);
   color: rgb(157, 255, 255);
   background-color: rgb(34, 34, 34);
   font-family: "Orbitron", sans-serif;
@@ -295,7 +296,7 @@ hr.second {
 #stopwatch, #timer {
   width: 500px;
   height: 391.2px;
-  text-shadow: 0px 0px 2px black, 0 0 3px rgb(157, 255, 255), 0 0 2px rgb(96, 226, 226);
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.7), 0 0 10px rgba(157, 255, 255, 0.3), 0 0 5px rgba(96, 226, 226, 0.6);
   color: rgb(157, 255, 255);
   background-color: rgb(34, 34, 34);
   font-family: "Orbitron", sans-serif;
@@ -334,7 +335,7 @@ hr.third {
 
 .createdLap {
   color: rgb(244, 180, 26);
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(244, 180, 26), 0 0 3px rgb(204, 148, 16);
+  text-shadow: 0px 0px 2px black, 0 0 6px rgba(244, 180, 26, 0.3), 0 0 3px rgba(204, 148, 16, 0.6);
   width: 150px;
   margin: 0.025px 8.33px;
   height: 20px;
@@ -390,7 +391,7 @@ span.lapTime {
   padding: 0;
   background-color: rgb(255, 130, 130);
   border: 2px solid rgb(255, 130, 130);
-  box-shadow: 0px 0px 3px rgb(0, 0, 0), 0 0 10px rgb(189, 71, 71), 0 0 5px rgb(189, 71, 71);
+  box-shadow: 0px 0px 3px rgb(0, 0, 0), 0 0 10px rgba(189, 71, 71, 0.3), 0 0 5px rgba(189, 71, 71, 0.6);
   border-radius: 35px;
   outline: none;
   text-align: center;
@@ -423,7 +424,7 @@ span.lapTime {
   width: 2em;
   font-size: 2em;
   background-color: rgb(95, 158, 160);
-  box-shadow: 0px 0px 15px rgb(71, 145, 148), 0 0 10px rgb(29, 132, 136), 0 0 5px rgb(6, 92, 95);
+  box-shadow: 0px 0px 15px rgb(71, 145, 148), 0 0 10px rgba(29, 132, 136, 0.3), 0 0 5px rgba(6, 92, 95, 0.6);
   text-align: center;
   overflow: hidden;
   border: none;
@@ -454,7 +455,7 @@ span.lapTime {
   font-size: 7em;
   margin: 0 20px;
   color: rgb(244, 180, 26);
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(244, 180, 26), 0 0 3px rgb(204, 148, 16);
+  text-shadow: 0px 0px 2px black, 0 0 10px rgba(244, 180, 26, 0.3), 0 0 5px rgba(204, 148, 16, 0.6);
   font-weight: bold;
   text-align: center;
 }
@@ -465,4 +466,20 @@ span.lapTime {
 
 .timerSecondDisplay {
   float: right;
+}
+
+.timerErrorDisplay {
+  display: inline-block;
+  position: absolute;
+  height: auto;
+  width: 100%;
+  font-size: 2em;
+  color: rgb(241, 165, 66);
+  text-shadow: 0px 0px 2px black, 0 0 10px rgba(241, 165, 66, 0.3), 0 0 5px rgba(204, 132, 38, 0.6);
+  font-weight: bold;
+  text-align: center;
+  bottom: 35%;
+  left: 50%;
+  -ms-transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
 }

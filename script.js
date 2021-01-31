@@ -151,7 +151,15 @@ window.onload = () => {
 
   document.getElementById("timerStartStop").onclick = () => {
     if (document.getElementById("timerStartStop").innerHTML == "START") {
-      startTimer();
+      timerHour = Number(document.getElementById("timerHour").value);
+      timerMinute = Number(document.getElementById("timerMinute").value);
+      timerSecond = Number(document.getElementById("timerSecond").value);
+      if (timerSecond >= 0 && timerMinute >= 0 && timerHour >= 0 && timerSecond <= 60 && timerMinute <= 60 && timerHour <= 99) {
+        startTimer();
+      }
+      else {
+        startTimerError();
+      }
     } else if (document.getElementById("timerStartStop").innerHTML == "STOP") {
       stopTimer();
     }
@@ -164,10 +172,10 @@ window.onload = () => {
 var controlStopwatch;
 var lapCounter = 0;
 var intervalID = null;
-var stopwatchHour = Number(document.getElementById("stopwatchHour"));
-var stopwatchMinute = Number(document.getElementById("stopwatchMinute"));
-var stopwatchSecond = Number(document.getElementById("stopwatchSecond"));
-var stopwatchMillisecond = Number(document.getElementById("stopwatchMillisecond"));
+var stopwatchHour = 0;
+var stopwatchMinute = 0;
+var stopwatchSecond = 0;
+var stopwatchMillisecond = 0;
 
 function controlStopwatch() {
   stopwatchMillisecond += 1;
@@ -296,7 +304,6 @@ function createLap() {
 // }
 
 function controlTimer() {
-  const startTime = performance.now();
   timerMillisecond -= 1;
   if (timerMillisecond < 0) {
     timerSecond -= 1;
@@ -310,7 +317,7 @@ function controlTimer() {
     timerHour -= 1;
     timerMinute = 59;
   }
-  if (timerHour == 0 && timerMinute == 0 && timerSecond == 0 && timerMillisecond == 0) {
+  if (timerHour == 0 && timerMinute == 0 && timerSecond == 0) {
     firstStartTimer = true;
     timerMillisecond = 99;
     resetTimer();
@@ -318,8 +325,6 @@ function controlTimer() {
   document.getElementsByClassName("timerSecondDisplay")[0].innerHTML = timerSecond;
   document.getElementsByClassName("timerMinuteDisplay")[0].innerHTML = timerMinute;
   document.getElementsByClassName("timerHourDisplay")[0].innerHTML = timerHour;
-  const endTime = performance.now();
-  console.log(endTime - startTime);
 }
 
 var intervalIDTimer = null;
@@ -343,9 +348,14 @@ function startTimer() {
   document.getElementById("timerStartStop").innerHTML = "START";
   if (firstStartTimer) {
     var parent = document.getElementsByClassName("timerTime")[0];
-    var child = document.getElementsByClassName("timerContent")[0];
-    if (typeof child != "undefined" && child != null) {
-      parent.removeChild(child);
+    var child1 = document.getElementsByClassName("timerContent")[0];
+    if (typeof child1 != "undefined" && child1 != null) {
+      parent.removeChild(child1);
+    }
+
+    var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
+    if (typeof child2 != "undefined" && child2 != null) {
+      parent.removeChild(child2);
     }
 
     document.getElementById("timerHour").disabled = true;
@@ -389,6 +399,9 @@ function startTimer() {
   if (timerHour == 0 && timerMinute == 0 && timerSecond == 0) {
     document.getElementById("timerStartStop").innerHTML = "START";
     firstStartTimer = true;
+    document.getElementById("timerHour").disabled = false;
+    document.getElementById("timerMinute").disabled = false;
+    document.getElementById("timerSecond").disabled = false;
   }
   if (reset) {
     reset = false;
@@ -417,6 +430,9 @@ function resetTimer() {
   document.getElementsByClassName("timerSecondDisplay")[0].innerHTML = permanentTimerSecond;
   document.getElementsByClassName("timerMinuteDisplay")[0].innerHTML = permanentTimerMinute;
   document.getElementsByClassName("timerHourDisplay")[0].innerHTML = permanentTimerHour;
+  document.getElementById("timerHour").disabled = false;
+  document.getElementById("timerMinute").disabled = false;
+  document.getElementById("timerSecond").disabled = false;
 }
 
 function deleteTimer() {
@@ -437,4 +453,36 @@ function deleteTimer() {
   var parent = document.getElementsByClassName("timerTime")[0];
   var child = document.getElementsByClassName("timerContent")[0];
   parent.removeChild(child);
+}
+
+function startTimerError() {
+  var errorMessage;
+  var parent = document.getElementsByClassName("timerTime")[0];
+  var child1 = document.getElementsByClassName("timerContent")[0];
+  if (typeof child1 != "undefined" && child1 != null) {
+    parent.removeChild(child1);
+  }
+  var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
+  if (typeof child2 != "undefined" && child2 != null) {
+    parent.removeChild(child2);
+  }
+
+  if (timerSecond > 60 || timerMinute > 60 || timerHour > 99) {
+    errorMessage = "Error: Value Exceeded";
+  } else
+    if (timerSecond < 0 || timerMinute < 0 || timerHour < 0) {
+      errorMessage = "Error: Inferior Value";
+    }
+
+  var timerErrorDisplay = document.createElement("div");
+  timerErrorDisplay.className = "timerErrorDisplay";
+  var timerErrorContent = document.createTextNode(errorMessage);
+  var linebreak = document.createElement('br');
+  var timerErrorContent2 = document.createTextNode("Enter A Valid Value");
+  timerErrorDisplay.appendChild(timerErrorContent);
+  timerErrorDisplay.appendChild(linebreak);
+  timerErrorDisplay.appendChild(timerErrorContent2);
+
+  var timerElement = document.getElementsByClassName("timerTime")[0];
+  timerElement.appendChild(timerErrorDisplay);
 }
