@@ -6,7 +6,9 @@
 * {
   box-sizing: border-box;
 }
+
 html {
+  background-image: linear-gradient(to right, rgba(255, 90, 90, 0.5), rgba(157, 255, 255, 0.5));
   margin: 0;
   height: 100vh;
   user-select: none;
@@ -29,7 +31,8 @@ header {
 header a {
   width: 130px;
   color: rgb(0, 0, 0);
-  background-color: rgb(233, 191, 191);
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
   text-align: center;
   padding: 15px;
   margin: 0 10px;
@@ -125,8 +128,7 @@ input:checked[type="checkbox"]::before {
 #clock {
   width: 500px;
   height: 391.2px;
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(157, 255, 255),
-    0 0 3px rgb(96, 226, 226);
+  text-shadow: 0px 0px 2px black, 0 0 3px rgb(157, 255, 255), 0 0 2px rgb(96, 226, 226);
   color: rgb(157, 255, 255);
   background-color: rgb(34, 34, 34);
   font-family: "Orbitron", sans-serif;
@@ -159,8 +161,7 @@ input:checked[type="checkbox"]::before {
   float: right;
 }
 
-.clockTime div,
-.stopwatchTime div {
+.clockTime div, .stopwatchTime div {
   float: left;
 }
 
@@ -183,12 +184,7 @@ input:checked[type="checkbox"]::before {
   text-align: center;
 }
 
-#clockHour,
-#clockMinute,
-#clockSecond,
-#stopwatchHour,
-#stopwatchMinute,
-#stopwatchSecond {
+#clockHour, #clockMinute, #clockSecond, #stopwatchHour, #stopwatchMinute, #stopwatchSecond {
   width: 110px;
   height: 110.4px;
   font-size: var(--primary-font-size);
@@ -218,8 +214,7 @@ hr.first {
   margin-top: 110.4px;
 }
 
-#clockDateLabel,
-#clockMonthLabel {
+#clockDateLabel, #clockMonthLabel {
   width: 110px;
   height: 20px;
   font-size: var(--secondary-font-size);
@@ -231,17 +226,14 @@ hr.first {
   font-size: var(--secondary-font-size);
 }
 
-.clockDate,
-.clockMonth,
-.clockDay {
+.clockDate, .clockMonth, .clockDay {
   width: 110px;
   height: 130.4px;
   text-align: center;
   float: left;
 }
 
-.slash,
-.pipe {
+.slash, .pipe {
   width: 30px;
   padding: 0;
   font-size: var(--primary-font-size);
@@ -258,8 +250,7 @@ hr.first {
   height: 130.4px;
 }
 
-#clockDate,
-#clockMonth {
+#clockDate, #clockMonth {
   width: 110px;
   height: 110.4px;
   font-size: var(--primary-font-size);
@@ -301,12 +292,10 @@ hr.second {
   text-align: center;
 }
 
-#stopwatch,
-#timer {
+#stopwatch, #timer {
   width: 500px;
   height: 391.2px;
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(157, 255, 255),
-    0 0 3px rgb(96, 226, 226);
+  text-shadow: 0px 0px 2px black, 0 0 3px rgb(157, 255, 255), 0 0 2px rgb(96, 226, 226);
   color: rgb(157, 255, 255);
   background-color: rgb(34, 34, 34);
   font-family: "Orbitron", sans-serif;
@@ -326,7 +315,7 @@ hr.second {
   position: absolute;
   top: 0;
   left: 50%;
-  -ms-transform: translate(-50%,0);
+  -ms-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
   float: left;
 }
@@ -345,8 +334,7 @@ hr.third {
 
 .createdLap {
   color: rgb(244, 180, 26);
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(244, 180, 26),
-    0 0 3px rgb(204, 148, 16);
+  text-shadow: 0px 0px 2px black, 0 0 6px rgb(244, 180, 26), 0 0 3px rgb(204, 148, 16);
   width: 150px;
   margin: 0.025px 8.33px;
   height: 20px;
@@ -373,8 +361,7 @@ span.lapTime {
   width: 210px;
   height: 20.4px;
   line-height: 20.4px;
-  text-shadow: 0px 0px 2px black, 0 0 6px rgb(255, 110, 64),
-    0 0 3px rgb(224, 72, 26);
+  text-shadow: 0px 0px 2px black, 0 0 6px rgb(255, 110, 64), 0 0 3px rgb(224, 72, 26);
   color: rgb(255, 110, 64);
   font-weight: bold;
   text-align: center;
@@ -403,6 +390,7 @@ span.lapTime {
   padding: 0;
   background-color: rgb(255, 130, 130);
   border: 2px solid rgb(255, 130, 130);
+  box-shadow: 0px 0px 3px rgb(0, 0, 0), 0 0 10px rgb(189, 71, 71), 0 0 5px rgb(189, 71, 71);
   border-radius: 35px;
   outline: none;
   text-align: center;
@@ -410,41 +398,71 @@ span.lapTime {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-.stopwatchButton button:hover {
+.stopwatchButton button:hover, .timerButton button:hover {
   background-color: rgb(255, 92, 92);
 }
 
-.stopwatchButton button:active {
+.stopwatchButton button:active, .timerButton button:active {
   background-color: rgb(177, 47, 47);
   border-color: rgb(255, 92, 92);
 }
 
 .timerTime {
-    width: 500px;
-    height: 280.8px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    -ms-transform: translate(-50%,0);
-    transform: translate(-50%, 0);
+  width: 500px;
+  height: 280.8px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .timerTime input {
-    height: 2em;
-    width: 2em;
-    font-size: 2em;
-    overflow: hidden;
-    border: none;
-    outline: none;
+  height: 2em;
+  width: 2em;
+  font-size: 2em;
+  background-color: rgb(95, 158, 160);
+  box-shadow: 0px 0px 15px rgb(71, 145, 148), 0 0 10px rgb(29, 132, 136), 0 0 5px rgb(6, 92, 95);
+  text-align: center;
+  overflow: hidden;
+  border: none;
+  border-radius: 32px;
+  outline: none;
+  margin: 20px;
 }
 
-.timerTime input::-webkit-outer-spin-button,
-.timerTime input::-webkit-inner-spin-button {
+.timerTime input::-webkit-outer-spin-button, .timerTime input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 .timerTime input[type=number] {
   -moz-appearance: textfield;
+}
+
+.timerContent {
+  width: 100%;
+  height: 176.8px;
+  text-align: center;
+}
+
+.timerHourDisplay, .timerMinuteDisplay, .timerSecondDisplay {
+  display: inline-block;
+  height: 100%;
+  width: 25%;
+  line-height: 176.8px;
+  font-size: 7em;
+  margin: 0 20px;
+  color: rgb(244, 180, 26);
+  text-shadow: 0px 0px 2px black, 0 0 6px rgb(244, 180, 26), 0 0 3px rgb(204, 148, 16);
+  font-weight: bold;
+  text-align: center;
+}
+
+.timerHourDisplay {
+  float: left;
+}
+
+.timerSecondDisplay {
+  float: right;
 }

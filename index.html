@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" />
+	<meta name="description" content="Its a Web Application which consists of a Clock, a Stopwatch and a Timer">
+	<meta name="keywords" content="HTML, CSS, JavaScript, Clock, Stopwatch, Timer" />
+	<meta name="author" content="Devang Joshi" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Clock-Stopwatch-Timer</title>
 	<link rel="stylesheet" href="style.css" />
@@ -72,9 +75,9 @@
 
 		<div id="timer">
 			<div class="timerTime">
-				<input type="number" id="timerHour" value={val} onchange=timerHourChange() maxLength="2" placeholder="HH" />
-				<input type="number" id="timerMinute" placeholder="MM" />
-				<input type="number" id="timerSecond" placeholder="SS" />
+				<input type="number" id="timerHour" value="" placeholder="HH" />
+				<input type="number" id="timerMinute" value="" placeholder="MM" />
+				<input type="number" id="timerSecond" value="" placeholder="SS" />
 			</div>
 			<div class="timerButton">
 				<button id="timerReset" type="button">RESET</button>
