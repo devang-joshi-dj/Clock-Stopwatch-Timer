@@ -321,8 +321,23 @@ var permanentTimerHour;
 var permanentTimerMinute;
 var permanentTimerSecond;
 
+var audio = new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em
+
+function beep(vol, freq, duration) {
+  // function to create a beep sound according to the passed arguements in beep function
+  var oscillator = audio.createOscillator()
+  var gain = audio.createGain()
+  oscillator.connect(gain)
+  oscillator.frequency.value = freq
+  oscillator.type = "square"
+  gain.connect(audio.destination)
+  gain.gain.value = vol * 0.01
+  oscillator.start(audio.currentTime)
+  oscillator.stop(audio.currentTime + duration * 0.001)
+}
+
 function controlTimer() {
-  // function to control the Timer by the main Timer logic of decreasing and assigning values to seconds, minutes and hours and stops when Timer is equal to 0 values in seconds, minutes and hours
+  // function to control the Timer by the main Timer logic of decreasing and assigning values to seconds, minutes and hours and stops when Timer is equal to 0 values in seconds, minutes and hours and generate beep sound
   timerMillisecond -= 1;
   if (timerMillisecond < 0) {
     timerSecond -= 1;
@@ -337,6 +352,7 @@ function controlTimer() {
     timerMinute = 59;
   }
   if (timerHour == 0 && timerMinute == 0 && timerSecond == 0) {
+    beep(100, 520, 200);
     firstStartTimer = true;
     timerMillisecond = 99;
     resetTimer();
