@@ -87,12 +87,11 @@
 				id="timerHour"
 				value=""
 				step="1"
-				onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				onkeypress="return timerValidationHandler(event)"
 				title="Numbers only"
 				min="0"
 				max="99"
 				maxlength="2"
-				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 				placeholder="HH" />
 				
 				<input
@@ -100,21 +99,23 @@
 				id="timerMinute"
 				value=""
 				step="1"
-				onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				onkeypress="return timerValidationHandler(event)"
 				title="Numbers only"
 				min="0"
 				max="60"
 				maxlength="2"
-				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 				placeholder="MM" />
 				
 				<input
-				type="number" id="timerSecond" value="" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+				type="number"
+				id="timerSecond"
+				value=""
+				step="1"
+				onkeypress="return timerValidationHandler(event)"
 				title="Numbers only"
 				min="0"
 				max= "60"
 				maxlength="2"
-				oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 				placeholder="SS" />
 			</div>
 

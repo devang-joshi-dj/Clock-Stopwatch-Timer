@@ -144,7 +144,6 @@ window.onload = () => {
   document.getElementById("stopwatchReset").onclick = () => resetStopwatch();
   document.getElementById("stopwatchCountLap").onclick = () => createLap();
 
-
   document.getElementById("timerHour").value = "";
   document.getElementById("timerMinute").value = "";
   document.getElementById("timerSecond").value = "";
@@ -279,29 +278,29 @@ function createLap() {
   }
 }
 
-// let val = "";
-// const timerHourChange = (event) => {
-//   if (event.target.value === '1' || event.target.value === '2' || event.target.value === '3' || event.target.value === '4' || event.target.value === '5' || event.target.value === '6' || event.target.value === '7' || event.target.value === '8' || event.target.value === '9' || event.target.value === '0') {
-//     document.getElementById("timerHour").value += event.target.value;
-//     console.log("true");
-//   }
-//   else {
-//     document.getElementById("timerHour").value += "";
-//     console.log("false");
-//   }
-//   console.log(val);
-// };
+function timerValidationHandler(event) {
+  return event.charCode >= 48 && event.charCode <= 57
+}
 
-// const timerHourChange = () => {
-//   var x = document.getElementById("timerHour").value;
-//   if (x == '1' || x == '2' || x == '3' || x == '4' || x == '5' || x == '6' || x == '7' || x == '8' || x == '9' || x == '0') {
-//     document.getElementById("timerHour").value = x;
-//   }
-//   else {
-//     console.log(typeof x);
-//     document.getElementById("timerHour").value = null;
-//   }
-// }
+function timerInputLimitHandler() {
+  if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+}
+
+document.getElementById("timerHour").addEventListener("input", timerInputLimitHandler);
+document.getElementById("timerMinute").addEventListener("input", timerInputLimitHandler);
+document.getElementById("timerSecond").addEventListener("input", timerInputLimitHandler);
+
+var intervalIDTimer = null;
+var firstStartTimer = true;
+var reset = false;
+var timerHour = 0;
+var timerMinute = 0;
+var timerSecond = 0;
+var timerMillisecond;
+var timerMillisecondDefaultValue = 99;
+var permanentTimerHour;
+var permanentTimerMinute;
+var permanentTimerSecond;
 
 function controlTimer() {
   timerMillisecond -= 1;
@@ -327,33 +326,22 @@ function controlTimer() {
   document.getElementsByClassName("timerHourDisplay")[0].innerHTML = timerHour;
 }
 
-var intervalIDTimer = null;
 function intervalManagerTimer(flag, controlTimer, time) {
   if (flag) intervalIDTimer = setInterval(controlTimer, time);
   else clearInterval(intervalIDTimer);
 }
-
-var firstStartTimer = true;
-var reset = false;
-var timerHour = 0;
-var timerMinute = 0;
-var timerSecond = 0;
-var timerMillisecond;
-var timerMillisecondDefaultValue = 99;
-var permanentTimerHour;
-var permanentTimerMinute;
-var permanentTimerSecond;
 
 function startTimer() {
   document.getElementById("timerStartStop").innerHTML = "START";
   if (firstStartTimer) {
     var parent = document.getElementsByClassName("timerTime")[0];
     var child1 = document.getElementsByClassName("timerContent")[0];
+    var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
+
     if (typeof child1 != "undefined" && child1 != null) {
       parent.removeChild(child1);
     }
 
-    var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
     if (typeof child2 != "undefined" && child2 != null) {
       parent.removeChild(child2);
     }
@@ -459,10 +447,12 @@ function startTimerError() {
   var errorMessage;
   var parent = document.getElementsByClassName("timerTime")[0];
   var child1 = document.getElementsByClassName("timerContent")[0];
+  var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
+
   if (typeof child1 != "undefined" && child1 != null) {
     parent.removeChild(child1);
   }
-  var child2 = document.getElementsByClassName("timerErrorDisplay")[0];
+
   if (typeof child2 != "undefined" && child2 != null) {
     parent.removeChild(child2);
   }
@@ -472,6 +462,8 @@ function startTimerError() {
   } else
     if (timerSecond < 0 || timerMinute < 0 || timerHour < 0) {
       errorMessage = "Error: Inferior Value";
+    } else {
+      errorMessage = "Error";
     }
 
   var timerErrorDisplay = document.createElement("div");
