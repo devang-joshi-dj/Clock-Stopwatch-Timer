@@ -41,25 +41,30 @@ const time = () => {
 };
 
 setInterval(() => {
-  // function for updating of hour, minute, second, date, month, day-name, year every 1/10 second
+  // function for updating hour, minute, second, date, month, day-name, year every 1/10 second executing time function every 1/10 second
   time();
 }, 100);
 
 const toggleClock = (visibility) => {
+  // function to change the visibility of Clock div
   document.getElementsByClassName("formatMode")[0].style.display = visibility;
   document.getElementById("clock").style.display = visibility;
 };
 
 const toggleStopwatch = (visibility) => {
+  // function to change the visibility of Stopwatch div
   document.getElementById("stopwatch").style.display = visibility;
 };
 
 const toggleTimer = (visibility) => {
+  // function to change the visibility of Timer div
   document.getElementById("timer").style.display = visibility;
 };
 
 window.onload = () => {
-  document.getElementById("clockHeading").className += "active";
+  //function to execute following tasks on page load
+
+  document.getElementById("clockHeading").className += "active"; // assigning active class to clockHeading div tag in header tag
 
   document.getElementById("stopwatchReset").disabled = true; // reset button of Stopwatch disabled on page load
   document.getElementById("stopwatchCountLap").disabled = true; // lap button of Stopwatch disabled on page load
@@ -134,6 +139,7 @@ window.onload = () => {
   };
 
   document.getElementById("stopwatchStartStop").onclick = () => {
+    // function to execute startStopwatch function when Stopwatch Start/Stop button content is equal to START and execute stopStopwatch function when Stopwatch Start/Stop button content is equal to STOP
     if (document.getElementById("stopwatchStartStop").innerHTML == "START") {
       startStopwatch();
     } else if (document.getElementById("stopwatchStartStop").innerHTML == "STOP") {
@@ -141,18 +147,21 @@ window.onload = () => {
     }
   };
 
-  document.getElementById("stopwatchReset").onclick = () => resetStopwatch();
-  document.getElementById("stopwatchCountLap").onclick = () => createLap();
+  document.getElementById("stopwatchReset").onclick = () => resetStopwatch(); // to execute resetStopwatch function when clicked on Stopwatch reset button
+  document.getElementById("stopwatchCountLap").onclick = () => createLap(); // to execute createLap function when clicked on Stopwatch count lap button
 
   document.getElementById("timerHour").value = "";
   document.getElementById("timerMinute").value = "";
   document.getElementById("timerSecond").value = "";
+  //to assign the values of input to nothing when page is loaded
 
   document.getElementById("timerStartStop").onclick = () => {
+    // function to fetch values from Timer inputs and execute startTimer function when Timer Start/Stop button content is equal to START and execute stopTimer function when Timer Start/Stop button content is equal to STOP and also generate an error if fetched values are not valid and also stopping anything from executing if values are not provided or values are equal to zero
     if (document.getElementById("timerStartStop").innerHTML == "START") {
       timerHour = Number(document.getElementById("timerHour").value);
       timerMinute = Number(document.getElementById("timerMinute").value);
       timerSecond = Number(document.getElementById("timerSecond").value);
+
       if (timerSecond >= 0 && timerMinute >= 0 && timerHour >= 0 && timerSecond <= 60 && timerMinute <= 60 && timerHour <= 99) {
         startTimer();
       }
@@ -164,10 +173,11 @@ window.onload = () => {
     }
   };
 
-  document.getElementById("timerReset").onclick = () => resetTimer();
-  document.getElementById("timerDelete").onclick = () => deleteTimer();
+  document.getElementById("timerReset").onclick = () => resetTimer(); // to execute resetTimer function when clicked on Timer reset button
+  document.getElementById("timerDelete").onclick = () => deleteTimer(); // to execute resetDelete function when clicked on Timer delete button
 };
 
+// followings are all the variables which are used in following functions for running the Stopwatch
 var controlStopwatch;
 var lapCounter = 0;
 var intervalID = null;
@@ -177,6 +187,7 @@ var stopwatchSecond = 0;
 var stopwatchMillisecond = 0;
 
 function controlStopwatch() {
+  // function to control the Stopwatch by the main Stopwatch logic of decreasing and assigning values to seconds, minutes and hours and stops when Stopwatch is equal to certain values in milliseconds, seconds, minutes and hours
   stopwatchMillisecond += 1;
   if (stopwatchMillisecond > 99) {
     stopwatchSecond += 1;
@@ -203,11 +214,13 @@ function controlStopwatch() {
 }
 
 function intervalManager(flag, controlStopwatch, time) {
+  // function to handle the interval function which is mainly responsible for starting and stopping the Stopwatch
   if (flag) intervalID = setInterval(controlStopwatch, time);
   else clearInterval(intervalID);
 }
 
 function startStopwatch() {
+  // function to start stopwatch after checking the values and assign STOP value to Stopwatch Start/Stop button
   intervalManager(true, controlStopwatch, 10);
   document.getElementById("stopwatchStartStop").innerHTML = "STOP";
   document.getElementById("stopwatchCountLap").disabled = false;
@@ -215,6 +228,7 @@ function startStopwatch() {
 }
 
 function stopStopwatch() {
+  // function to stop Stopwatch and assign START value to Stopwatch Start/Stop button
   intervalManager(false);
   document.getElementById("stopwatchStartStop").innerHTML = "START";
   document.getElementById("stopwatchStartStop").disabled = false;
@@ -222,6 +236,7 @@ function stopStopwatch() {
 }
 
 function resetStopwatch() {
+  // function to reset Stopwatch to its initial state and assign START value to Stopwatch Start/Stop button
   document.getElementById("stopwatchStartStop").innerHTML = "START";
   intervalManager(false);
   document.getElementById("stopwatchReset").disabled = true;
@@ -245,6 +260,7 @@ function resetStopwatch() {
 }
 
 function createLap() {
+  // function to create lap by creating nodes assigning them the data retrieved from Stopwatch and appending them to parent node and checking and stopping with alert message if they are more than the 24
   lapCounter++;
   if (lapCounter <= 24) {
     var content = document.createElement("div");
@@ -279,17 +295,20 @@ function createLap() {
 }
 
 function timerValidationHandler(event) {
+  // function to only return numeric values to input tag
   return event.charCode >= 48 && event.charCode <= 57
 }
 
 function timerInputLimitHandler() {
+  // function to restrict user to input more than 2 characters in input tag
   if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
 }
 
-document.getElementById("timerHour").addEventListener("input", timerInputLimitHandler);
-document.getElementById("timerMinute").addEventListener("input", timerInputLimitHandler);
-document.getElementById("timerSecond").addEventListener("input", timerInputLimitHandler);
+document.getElementById("timerHour").addEventListener("input", timerInputLimitHandler); // to execute timerInputLimitHandler function on timerHour input tag
+document.getElementById("timerMinute").addEventListener("input", timerInputLimitHandler); // to execute timerInputLimitHandler function on timerMinute input tag
+document.getElementById("timerSecond").addEventListener("input", timerInputLimitHandler); // to execute timerInputLimitHandler function on timerSecond input tag
 
+// followings are all the variables which are used in following functions for running the Timer
 var intervalIDTimer = null;
 var firstStartTimer = true;
 var reset = false;
@@ -303,6 +322,7 @@ var permanentTimerMinute;
 var permanentTimerSecond;
 
 function controlTimer() {
+  // function to control the Timer by the main Timer logic of decreasing and assigning values to seconds, minutes and hours and stops when Timer is equal to 0 values in seconds, minutes and hours
   timerMillisecond -= 1;
   if (timerMillisecond < 0) {
     timerSecond -= 1;
@@ -327,12 +347,13 @@ function controlTimer() {
 }
 
 function intervalManagerTimer(flag, controlTimer, time) {
+  // function to handle the interval function which is mainly responsible for starting and stopping the Timer
   if (flag) intervalIDTimer = setInterval(controlTimer, time);
   else clearInterval(intervalIDTimer);
 }
 
 function startTimer() {
-  document.getElementById("timerStartStop").innerHTML = "START";
+  // function to start Timer after checking the values and assign STOP value to Timer Start/Stop button
   if (firstStartTimer) {
     var parent = document.getElementsByClassName("timerTime")[0];
     var child1 = document.getElementsByClassName("timerContent")[0];
@@ -407,11 +428,13 @@ function startTimer() {
 }
 
 function stopTimer() {
+  // function to stop Timer and assign START value to Timer Start/Stop button
   intervalManagerTimer(false);
   document.getElementById("timerStartStop").innerHTML = "START";
 }
 
 function resetTimer() {
+  // function to reset Timer to its initial state when the Timer was started at its first place
   reset = true;
   intervalManagerTimer(false);
   document.getElementById("timerStartStop").innerHTML = "START";
@@ -424,6 +447,7 @@ function resetTimer() {
 }
 
 function deleteTimer() {
+  // function to stop Timer and delete if any node exists which is supposed to be deleted
   intervalManagerTimer(false);
   timerMillisecond = timerMillisecondDefaultValue;
   timerHour = 0;
@@ -440,10 +464,13 @@ function deleteTimer() {
 
   var parent = document.getElementsByClassName("timerTime")[0];
   var child = document.getElementsByClassName("timerContent")[0];
-  parent.removeChild(child);
+  if (typeof child != "undefined" && child != null) {
+    parent.removeChild(child);
+  }
 }
 
 function startTimerError() {
+  // function which generates an error and deletes if any error/timer div/node exists on its place where it is supposed to be printed according to certain conditions after creating a new div/node to print
   var errorMessage;
   var parent = document.getElementsByClassName("timerTime")[0];
   var child1 = document.getElementsByClassName("timerContent")[0];
