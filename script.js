@@ -321,10 +321,10 @@ var permanentTimerHour;
 var permanentTimerMinute;
 var permanentTimerSecond;
 
-var audio = new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em
-
 function beep(vol, freq, duration) {
   // function to create a beep sound according to the passed arguements in beep function
+  var audio = new AudioContext() // browsers limit the number of concurrent audio contexts, so you better re-use'em
+  audio.resume();
   var oscillator = audio.createOscillator()
   var gain = audio.createGain()
   oscillator.connect(gain)
