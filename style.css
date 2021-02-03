@@ -7,9 +7,10 @@
   box-sizing: border-box;
 }
 
-html {
-  background-image: linear-gradient(to bottom, rgb(222, 145, 145), rgb(190, 200, 200));
+html, body {
+  background-image: linear-gradient(to bottom, rgb(222, 145, 145), rgb(201, 182, 182), rgb(222, 145, 145));
   margin: 0;
+  width: 100%;
   height: 100%;
   user-select: none;
 }
@@ -18,11 +19,12 @@ html {
 
 header {
   width: 450px;
+  height: 28%;
   position: absolute;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 1.4em;
   text-align: center;
-  top: 10px;
+  top: 2%;
   left: 50%;
   -ms-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
@@ -35,7 +37,7 @@ header a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   text-align: center;
   padding: 15px;
-  margin: 10px 10px;
+  margin: 0px 10px;
   text-decoration: none;
   border-radius: 10px;
   cursor: pointer;
@@ -54,6 +56,17 @@ header a.active {
 
 /* Header End */
 
+/* Container Start */
+
+.container {
+  width: 100%;
+  height: 70%;
+  position: absolute;
+  bottom: 0;
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
 /* Main Start */
 
 .main {
@@ -62,10 +75,10 @@ header a.active {
   position: absolute;
   margin: 0;
   overflow: hidden;
-  top: 50%;
+  top: 0;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 /* Main End */
@@ -502,6 +515,8 @@ span.lapTime {
 
 /* Stopwatch/Timer End */
 
+/* Container End */
+
 /*
  MEDIA QUERIES
 */
@@ -513,12 +528,13 @@ span.lapTime {
   /* Header Start */
   header {
     width: 100%;
+    height: 30%;
     top: 0;
   }
   header a {
     width: 100%;
     margin: 0;
-    padding: 15px 0px;
+    padding: 10px 0px;
     border-radius: 0;
     box-shadow: none;
     border-bottom: 4px solid rgb(255, 255, 255);
@@ -674,9 +690,6 @@ span.lapTime {
     text-align: center;
   }
   .timerHourDisplay, .timerMinuteDisplay, .timerSecondDisplay {
-    display: inline-block;
-    height: 100%;
-    width: 25%;
     line-height: 141.44px;
     font-size: 5em;
     margin: 0 16px;
@@ -696,10 +709,7 @@ span.lapTime {
   }
   header a {
     width: 100%;
-    margin: 0;
-    padding: 12px 0px;
-    border-radius: 0;
-    box-shadow: none;
+    padding: 8px 0px;
     border-bottom: 3px solid rgb(255, 255, 255);
   }
   /* Header End */
@@ -856,9 +866,6 @@ span.lapTime {
     text-align: center;
   }
   .timerHourDisplay, .timerMinuteDisplay, .timerSecondDisplay {
-    display: inline-block;
-    height: 100%;
-    width: 25%;
     line-height: 94.35px;
     font-size: 4em;
     margin: 0 12px;
@@ -869,6 +876,206 @@ span.lapTime {
   /* Stopwatch/Timer Start End */
 }
 
-@media only screen and (max-width: 300px) {}
+@media only screen and (max-width: 300px) {
+  :root {
+    --primary-font-size: 3.7em;
+    --secondary-font-size: 0.5em;
+  }
+  /* Header Start */
+  header {
+    width: 120%;
+    top: 0;
+  }
+  header a {
+    padding: 6px 0px;
+  }
+  /* Header End */
+  /* Container Start */
+  .container {
+    left: 50%;
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  }
+  /* Main Start */
+  .main {
+    width: 280px;
+    height: 251.5968px;
+  }
+  /* Main Start */
+  /* Clock Start */
+  #clock {
+    width: 280px;
+    height: 233.6768px;
+  }
+  #meridiem, #timeLabel {
+    width: 23.52px;
+    height: 65.9456px;
+    font-size: 0.56em;
+  }
+  .clockTime {
+    width: 232.96px;
+    height: 65.9456px;
+  }
+  .colon {
+    width: 17.733333333333px;
+    height: 65.9456px;
+  }
+  #clockHour, #clockMinute, #clockSecond, #stopwatchHour, #stopwatchMinute, #stopwatchSecond {
+    width: 65.706666666667px;
+    height: 65.9456px;
+  }
+  #stopwatchMillisecond {
+    width: 47.413333333333px;
+    height: 65.9456px;
+    line-height: 65.9456px;
+    font-size: 1.8666666666667em;
+  }
+  hr.first {
+    margin-top: 65.9456px;
+    margin-bottom: 4.48px;
+  }
+  #clockDateLabel, #clockMonthLabel {
+    width: 65.706666666667px;
+    height: 11.946666666667px;
+  }
+  #clockDayLabel {
+    width: 112px;
+    height: 11.946666666667px;
+  }
+  .clockDate, .clockMonth, .clockDay {
+    width: 65.706666666667px;
+    height: 77.892266666667px;
+  }
+  .slash, .pipe {
+    width: 17.92px;
+  }
+  .slash {
+    height: 65.9456px;
+    margin-top: 11.946666666667px;
+  }
+  .pipe {
+    height: 77.892266666667px;
+  }
+  #clockDate, #clockMonth {
+    width: 65.706666666667px;
+    height: 65.9456px;
+  }
+  .clockDay {
+    width: 112px;
+    height: 77.892266666667px;
+  }
+  #clockDayName {
+    width: 112px;
+    height: 65.9456px;
+    line-height: 65.9456px;
+    font-size: 2.9866666666667em;
+  }
+  hr.second {
+    margin-top: 77.892266666667px;
+    margin-bottom: 4.48px;
+  }
+  .clockYear {
+    width: 280px;
+  }
+  #clockYearLabel {
+    width: 280px;
+    height: 11.946666666667px;
+  }
+  #clockYear {
+    width: 280px;
+    height: 65.333333333333px;
+    line-height: 65.333333333333px;
+    font-size: 3.7333333333333em;
+  }
+  /* Clock End */
+  /* Stopwatch/Timer Start */
+  #stopwatch, #timer {
+    width: 280px;
+    height: 233.6768px;
+  }
+  .stopwatchTime {
+    width: 280px;
+    height: 65.9456px;
+  }
+  hr.third {
+    margin-top: 65.9456px;
+    margin-bottom: 4.7786666666667px;
+  }
+  #lap {
+    max-width: 280px;
+    max-height: 95.812266666667px;
+  }
+  .createdLap {
+    font-size: 0.74666666666667em;
+    width: 89.6px;
+    margin: 0.014933333333333px 1.8666666666667px;
+    height: 11.946666666667px;
+    line-height: 11.946666666667px;
+  }
+  span.hash {
+    width: 17.92px;
+  }
+  span.lapTime {
+    width: 71.68px;
+  }
+  .lapWarning, .timerWarning {
+    font-size: 0.59733333333333em;
+    width: 125.44px;
+    height: 12.1856px;
+    line-height: 12.1856px;
+  }
+  .stopwatchButton, .timerButton {
+    width: 280px;
+    height: 65.9456px;
+  }
+  .stopwatchButton button, .timerButton button {
+    width: 59.733333333333px;
+    height: 29.866666666667px;
+    margin: 8.96px 14.933333333333px;
+  }
+  .timerTime {
+    width: 280px;
+    height: 167.7312px;
+  }
+  .timerTime input {
+    height: 1.7733333333333em;
+    width: 1.7733333333333em;
+    font-size: 1.7733333333333em;
+    margin: 11.946666666667px;
+  }
+  .timerContent {
+    width: 100%;
+    height: 88.06px;
+    text-align: center;
+  }
+  .timerHourDisplay, .timerMinuteDisplay, .timerSecondDisplay {
+    line-height: 88.06px;
+    font-size: 3.7333333333333em;
+    margin: 0 11.2px;
+  }
+  .timerErrorDisplay {
+    font-size: 1.4em;
+  }
+  /* Stopwatch/Timer Start End */
+  /* Container End */
+}
 
-/* @media only screen and (max-width: 280px) {} */
+@media screen and (max-height: 500px) {
+  header a {
+    padding: 4px 0;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  header a {
+    padding: 2px 0;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-height: 300px) {
+  header a {
+    padding: 0 0;
+    font-size: 0.6em;
+  }
+}
