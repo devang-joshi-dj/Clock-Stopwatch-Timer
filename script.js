@@ -520,4 +520,7 @@ function startTimerError() {
 
   var timerElement = document.getElementsByClassName("timerTime")[0];
   timerElement.appendChild(timerErrorDisplay);
+
+  document.getElementById("timerReset").disabled = true;
+  document.getElementById("timerDelete").disabled = true;
 }
